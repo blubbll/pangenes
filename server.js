@@ -13,6 +13,10 @@ const dreams = [
   "Wash the dishes"
 ];
 
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: false })); //<--
+
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
@@ -24,7 +28,8 @@ app.get("/", (request, response) => {
 
 // https://expressjs.com/en/starter/basic-routing.html
 app.use("/*", (request, response, next) => {
-  console.log(request.url);
+  console.log(request.originalUrl);
+  next();
 });
 
 // https://expressjs.com/en/starter/basic-routing.html
@@ -34,10 +39,28 @@ app.get("/login/servers.php", (request, response) => {
 });
 
 // https://expressjs.com/en/starter/basic-routing.html
-app.post("/login/login.php/*", (request, response) => {
-  console.log(1);
-  response.sendFile(__dirname + "/views/index.html");
+app.post("/login/login.php", (req, res) => {
+  const Login = {user: req.body.user, pass: req.body.pass, ver: req.body.ver};
+  console.log(`${Login.ver}Login attempt from [${Login.user}] with pass [${Login.pass}]!`);
+
+  /*
+  no,0 = could not log in
+  no,1 = invalid username
+  no,2 = your user account does nto have permission to log in
+  */
+  
+  res.write("no,2");
+  res.end();
 });
+
+// https://expressjs.com/en/starter/basic-routing.html
+app.post("/login/keepalive.php", (req, res) => {
+  const Login = {user: req.body.user, pass: req.body.pass};
+  console.log(`Login attempt from [${Login.user}] with pass [${Login.pass}]!`);
+  
+  res.status(200);
+});
+
 
 // https://expressjs.com/en/starter/basic-routing.html
 app.get("/login/servers.php*/", (request, response) => {
