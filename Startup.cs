@@ -25,11 +25,22 @@ namespace App
                 app.UseDeveloperExceptionPage();
             }
           
-            Console.WriteLine("This writes to the Glitch logs.");
+            Console.WriteLine("hi");
 
             app.Run(async (ctx) =>
             {
-              Console.WriteLine(ctx.Request.Path);
+              var req = ctx.Request;
+              var res = ctx.Response;
+              
+              if(req.Path.ToString().StartsWith("/login"))
+                {
+                  var user = req.Form["user"];
+                  var pass = req.Form["pass"];
+                    Console.WriteLine($"User [{user}] tried to login in with password [{pass}]...");
+                }
+              
+              Console.WriteLine(req.Path);
+              await res.WriteAsync("yes");
                 //await context.Response.WriteAsync("Hello Glitch!!! You're running .NET Core 2.1");
             });
         }
