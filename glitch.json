@@ -1,0 +1,19 @@
+{
+  "install": "dotnet restore",
+  "start": "dotnet run --ASPNETCORE_ENVIRONMENT Development",
+  "watch": {
+    "install": {
+      "include": [
+        "^glitch\\.json$",
+        "^App\\.csproj$",
+        "^install\\.sh$",
+        "^\\.env$"
+      ]
+    },
+    "restart": {
+      "exclude": [ "^wwwroot/" ],
+      "include": [ "\\.cs$" ]
+    },
+    "throttle": 1000
+  }
+}
