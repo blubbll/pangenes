@@ -25,3 +25,7 @@ current stati:
 -  no,3 = A New version is available. Update now (this is interesting lol, clicking ok removes your username from the config kek)
 -  no,4 = Too many bad logins. Please visit bensgames.net/alpha (the fuq)
 -  no, 5+ : same as 0
+
+authserver offline?
+- you can enforce playing offline by moving to the offset aHudnologin1 instead of aHudnologin2 and clicking "yes"
+- multiplayer wont be possible here
