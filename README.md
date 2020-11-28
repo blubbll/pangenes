@@ -26,6 +26,7 @@ current stati:
 -  no,4 = Too many bad logins. Please visit bensgames.net/alpha (the fuq)
 -  no, 5+ : same as 0
 
-authserver offline?
-- you can enforce playing offline by moving to the offset aHudnologin1 instead of aHudnologin2 and clicking "yes"
-- multiplayer wont be possible here
+Findings:
+- to play offline from the login menu, at 009CB422 jz, jump to 009CB436 instead of 009CB424
+- to force the "multiplayer" button to be clickable, at 009C1C4E jz, jump to 009C1C50 instead of 009C1C78
+- to forcejoin the multiplayer server, at 009CE3D7 jz, jump to 009CE3D9 instead of 009CE40A
